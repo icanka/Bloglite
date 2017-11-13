@@ -10,16 +10,16 @@
     <title>Gentelella Alela! | </title>
 
     <!-- Bootstrap -->
-    <link href="<?php echo base_url('/gentelella-master/vendors/bootstrap/dist/css/bootstrap.min.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url('vendors/bootstrap/dist/css/bootstrap.min.css'); ?>" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="<?php echo base_url('/gentelella-master/vendors/font-awesome/css/font-awesome.min.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url('vendors/font-awesome/css/font-awesome.min.css'); ?>" rel="stylesheet">
     <!-- NProgress -->
-    <link href="<?php echo base_url('/gentelella-master/vendors/nprogress/nprogress.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url('vendors/nprogress/nprogress.css'); ?>" rel="stylesheet">
     <!-- Animate.css -->
-    <link href="<?php echo base_url('/gentelella-master/vendors/animate.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url('vendors/animate.css'); ?>" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="<?php echo base_url('/gentelella-master/build/css/custom.min.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url('build/css/custom.min.css'); ?>" rel="stylesheet">
 
   </head>
 
@@ -109,22 +109,22 @@
       </div>
     </div>
 
-    <script src="<?php echo base_url('/gentelella-master/vendors/jquery/dist/jquery.min.js'); ?>"></script>
+    <script src="<?php echo base_url('vendors/jquery/dist/jquery.min.js'); ?>"></script>
 
     <!-- Bootstrap -->
-    <script src="<?php echo base_url('/gentelella-master/vendors/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
+    <script src="<?php echo base_url('vendors/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
 
     <!-- FastClick -->
-    <script src="<?php echo base_url('/gentelella-master/vendors/fastclick/lib/fastclick.js'); ?>"></script>
+    <script src="<?php echo base_url('vendors/fastclick/lib/fastclick.js'); ?>"></script>
 
     <!-- NProgress -->
-    <script src="<?php echo base_url('/gentelella-master/vendors/nprogress/nprogress.js'); ?>"></script>
+    <script src="<?php echo base_url('vendors/nprogress/nprogress.js'); ?>"></script>
 
 
     <!-- Custom Theme Scripts -->
-    <script src="<?php echo base_url('/gentelella-master/build/js/custom.min.js'); ?>"></script>
+    <script src="<?php echo base_url('build/js/custom.min.js'); ?>"></script>
 
-    <script src="<?php echo base_url('/gentelella-master/src/js/fullscreen.js'); ?>"></script>
+    <script src="<?php echo base_url('src/js/fullscreen.js'); ?>"></script>
 
   </body>
 </html>
