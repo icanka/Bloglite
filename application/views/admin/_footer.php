@@ -26,7 +26,6 @@
 <script src="<?php echo base_url('build/js/custom.min.js'); ?>"></script>
 
 <script src="<?php echo base_url('src/js/fullscreen.js'); ?>"></script>
-<?=base_url()?>
 
 
 </body>

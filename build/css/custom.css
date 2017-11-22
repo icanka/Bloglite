@@ -1,4 +1,6 @@
-
+.table_edit {
+	width: 40px !important; 
+}
 html , body{
 	
  height:100%;

@@ -1865,6 +1865,10 @@ if (typeof NProgress != 'undefined') {
 			});
 
 		}; 
+		
+		
+		
+		
 	   
 	   
 	   /* CUSTOM NOTIFICATION */
@@ -2559,6 +2563,7 @@ if (typeof NProgress != 'undefined') {
 				});
 
 				$('#datatable-responsive').DataTable();
+				$('#datatable-responsive-2').DataTable();
 
 				$('#datatable-scroller').DataTable({
 				  ajax: "js/datatables/json/scroller-demo.json",
@@ -5056,7 +5061,7 @@ if (typeof NProgress != 'undefined') {
 		init_DataTables();
 		init_chart_doughnut();
 		init_gauge();
-		init_PNotify();
+		//init_PNotify();
 		init_starrr();
 		init_calendar();
 		init_compose();

@@ -20,9 +20,9 @@ class Home extends CI_Controller {
 
     public function index()
     {
-
-        $this->load->view('admin/_sidebar');
         $this->load->view('admin/_header');
+        $this->load->view('admin/_sidebar');
+        $this->load->view('admin/_top_nav');
         $this->load->view('admin/_content');
         $this->load->view('admin/_footer');
     }
