@@ -1,3 +1,16 @@
+td{
+	overflow: hidden;
+	max-width:200px;
+}
+td:hover{
+	max-width:inherit
+}
+
+
+
+
+
+
 .table_edit {
 	width: 40px !important; 
 }

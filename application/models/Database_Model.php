@@ -107,6 +107,53 @@ class Database_Model extends CI_Model{
             return false;
         }
     }
+
+
+
+
+
+
+    public function select_all2($table_name){
+
+        $this->db->select('*');
+        $this->db->from($table_name);
+
+        $query = $this->db->get();
+
+
+
+
+
+
+
+        if($query->num_rows() > 0){
+
+            return $query->result_array();
+
+        }else {
+
+            return false;
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
