@@ -22,35 +22,14 @@ class Uyeler extends CI_Controller {
     {
 
 
-        $wrapper = array();
-        // pass this array the column names which are not going to be included in tables.
-        $columns = array(
-            'id',
-            'picture'
-        );
+        $data['users'] = $this->Database_Model->select_all('users');
+        $data['admins'] = $this->Database_Model->select_all('admin');
 
-        // Which tables are going to get listed.
-        $tables =  array(
-            0 => 'admin',
-            1 => 'users',
-        );
-
-
-        $data = array();
-
-
-        foreach ($tables as $table){
-            $data[$table] = $this->Database_Model->select_all2($table);
-
-        }
-
-        $wrapper['data'] = $data;
-        $wrapper['columns'] = $columns;
 
         $this->load->view('admin/_header_tablo');
         $this->load->view('admin/_sidebar');
         $this->load->view('admin/_top_nav');
-        $this->load->view('admin/show_tables', $wrapper);
+        $this->load->view('admin/_show_tables_test2', $data);
         $this->load->view('admin/_footer_tablo');
 
     }
@@ -94,11 +73,11 @@ class Uyeler extends CI_Controller {
         $data['row'] = $this->Database_Model->get_row($table_name, $id);
         $data['table_name'] = $table_name;
 
-            $this->load->view('admin/_header_form');
-            $this->load->view('admin/_sidebar');
-            $this->load->view('admin/_top_nav');
-            $this->load->view('admin/_update_user', $data);
-            $this->load->view('admin/_footer_form');
+        $this->load->view('admin/_header_form');
+        $this->load->view('admin/_sidebar');
+        $this->load->view('admin/_top_nav');
+        $this->load->view('admin/_update_user', $data);
+        $this->load->view('admin/_footer_form');
 
 
 
@@ -143,14 +122,25 @@ class Uyeler extends CI_Controller {
     }
 
 
-
-
     public  function page_500(){
         $this->load->view('errors/page_500');
     }
 
+    /*
+    public function  ajax_search(){
 
+        $data = array(
 
+            'table_name' => $this->input->post('tablename'),
+            'keyword'    => $this->input->post('search_string')
+        );
+
+        $this->load->model('Database_Model');
+        $Result = $this->Database_Model->search();
+        echo json_encode($Result);
+
+    }
+ */
 
 
 }

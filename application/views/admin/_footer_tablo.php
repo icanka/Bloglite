@@ -26,6 +26,9 @@
 <script src="<?php echo base_url('vendors/datatables.net-buttons/js/buttons.html5.min.js') ;?>"></script>
 <script src="<?php echo base_url('vendors/datatables.net-buttons/js/buttons.print.min.js') ;?>"></script>
 
+
+<script src="<?php echo base_url('vendors/iCheck/icheck.min.js'); ?>"></script>
+
 <script src="<?php echo base_url('vendors/datatables.net-responsive/js/dataTables.responsive.min.js') ;?>"></script>
 <script src="<?php echo base_url('vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') ;?>"></script>
 <script src="<?php echo base_url('vendors/pnotify/dist/pnotify.js'); ?>"></script>
@@ -36,17 +39,7 @@
 <script src="<?php echo base_url('build/js/custom.js') ;?>"></script>
 
 <?php if ($this->session->flashdata('succes_message')){ ?>
-    <script type="text/javascript">
-        $( document ).ready(function() {
-            new PNotify({
-                title: 'Success',
-                text: '<?=$this->session->flashdata('succes_message') ?>',
-                type: 'success',
-                styling: 'bootstrap3',
-                nonblock: {nonblock: true}
-            });
-        });
-    </script>
+    <script>notification_Pnotify('<?=$this->session->flashdata('succes_message')?>');</script>
 <?php } ?>
 
 

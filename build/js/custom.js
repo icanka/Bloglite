@@ -1871,9 +1871,16 @@ if (typeof NProgress != 'undefined') {
 		}; 
 		
 		
-		
-		
-	   
+		function notification_Pnotify(notification_text){
+			new PNotify({
+                title: 'Success',
+                text: notification_text,
+                type: 'success',
+                styling: 'bootstrap3',
+
+            });
+			
+		};   
 	   
 	   /* CUSTOM NOTIFICATION */
 			
