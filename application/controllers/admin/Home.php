@@ -27,15 +27,7 @@ class Home extends CI_Controller {
         $this->load->view('admin/_footer');
     }
 
-    public function test($x, $y) {
 
-
-        echo "<br>Test fonksiyonu deneme<br>";
-
-        $z = $x/$y;
-        echo $z, "<br>";
-        echo base_url();
-    }
 
 
 }

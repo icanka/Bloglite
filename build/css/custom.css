@@ -6,7 +6,10 @@ td:hover{
 	max-width:inherit
 }
 
-
+#btn-toolbar-np{
+	float: right;
+	margin-right: 15px;
+}
 
 
 

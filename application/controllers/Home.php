@@ -16,14 +16,13 @@ class Home extends CI_Controller {
     {
         echo "Controller:  ";
         echo  current_url();
-        echo "/home";
         //$this->load->view('admin/_sidebar');
         //$this->load->view('admin/_header');
         //$this->load->view('admin/_content');
         //$this->load->view('admin/_footer');
     }
 
-    public function test($x, $y) {
+    public function test1($x, $y) {
 
 
         echo "<br>Test fonksiyonu deneme<br>";
@@ -32,4 +31,6 @@ class Home extends CI_Controller {
         echo $z, "<br>";
         echo base_url();
     }
+
+    
 }

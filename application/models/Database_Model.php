@@ -113,30 +113,37 @@ class Database_Model extends CI_Model{
 
 
 
-    public function select_all2($table_name){
-
-        $this->db->select('*');
-        $this->db->from($table_name);
-
-        $query = $this->db->get();
+    public function select_all_array($table_name, $offset='0', $table_row='3'){
 
 
 
+        $query = "SELECT * FROM " . $table_name . " LIMIT " . $offset . ", ". $table_row;
+        //echo $query;
+        $result = $this->db->query($query);
 
 
+        if($result->num_rows() > 0){
+            return $result->result_array();
+        }else {return false;}
+    }
 
-
-        if($query->num_rows() > 0){
-
-            return $query->result_array();
-
+    public function get_offset($table_name,$offset, $table_row){        // use the same $table_row value as used
+                                                                        // in select_all_array
+        $num_rows = $this->db->count_all_results($table_name);
+        $offset = (int)$offset;
+        if($offset+$table_row > ($num_rows-1)){
+            $offset = $num_rows - $table_row;
+            return (string)$offset;
+        }elseif ($offset < 0){
+            $offset = 0;
+            return (string)$offset;
         }else {
-
-            return false;
-
+            return (string)$offset;
         }
 
     }
+
+
 
 
 

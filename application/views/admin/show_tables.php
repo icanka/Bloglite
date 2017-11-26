@@ -1,3 +1,4 @@
+
 <div class="right_col" role="main">
     <div class="">
         <div class="clearfix"></div>
@@ -8,9 +9,20 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Plain Page</h2>
+                        <h2>Kullanıcılar</h2>
                         <ul class="nav navbar-right panel_toolbox">
+                            <li style="margin-right: 5px">
+                                <form method="post" action="<?=base_url('admin/uyeler')?>">
+                                    <div class="btn-group">
+
+                                        <button value="prev" name="prev" class="btn btn-default" type="submit">Prev</button>
+                                        <button value="next" name="next" class="btn btn-default" type="submit">Next</button>
+
+                                    </div>
+                                </form>
+                            </li>
                             <li style="margin-right: 25px">
+
                                 <div class="btn-group">
                                     <a href="<?=base_url('admin/uyeler/insert')?>" class="btn btn-dark" type="button"><i class="fa fa-plus"></i> Ekle</a>
                                 </div>
@@ -79,8 +91,6 @@
                                 foreach ($data as $table_name => $table_value){
 
                                     $keys = array_keys($table_value[0]);
-
-
 
                                     ?>
 
@@ -177,26 +187,11 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                             </div>
                         </div>
 
                     </div>
+
                 </div>
             </div>
         </div>
