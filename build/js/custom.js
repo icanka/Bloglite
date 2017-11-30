@@ -6,10 +6,6 @@
  *     // code here
  * });
  */
-
- 
- 
- 
  (function($,sr){
     // debouncing function from John Hann
     // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
@@ -1880,7 +1876,20 @@ if (typeof NProgress != 'undefined') {
 
             });
 			
-		};   
+		};
+
+		function notification_Pnotify_error(notification_text){
+			new PNotify({
+				title: 'Error',
+				text: notification_text,
+				type: 'error',
+				styling: 'bootstrap3',
+
+			});
+
+		};
+
+
 	   
 	   /* CUSTOM NOTIFICATION */
 			

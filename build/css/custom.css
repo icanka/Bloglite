@@ -11,6 +11,27 @@ td:hover{
 	margin-right: 15px;
 }
 
+.img_wrap {
+	visibility: hidden;
+	height: 0px	
+}
+
+.img__wrap{
+	display: inline-block
+}
+
+.img__wrap:hover .img_wrap{
+	visibility: visible;
+	height:200px
+	
+}
+.img__wrap:hover .img_description{
+	visibility: hidden;
+	width: 0px;
+	height: 0px;
+	display: inline-block
+	
+}
 
 
 

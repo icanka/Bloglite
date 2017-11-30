@@ -71,29 +71,58 @@ class Database_Model extends CI_Model{
 
     public function updateTo_table($table_name, $id, $data){
         $query = $this->db->query('show tables');
-        if(strpos($table_name, $data['authorization']) !== false){
+        if((count($data) == 1) && array_key_exists('picture', $data)){
+            foreach ($query->result_array() as $tables){
 
-            $this->db->where('id', $id);
-            $this->db->update($table_name, $data);
-            return true;
+                foreach ($tables as $table){
 
-        }else{
-
-            foreach ($query->result_array() as $table){
-                foreach ($table as $r){
-
-                    if(strpos($r, $data['authorization']) !== false){
+                    if($table == $table_name){
 
                         $this->db->where('id', $id);
-                        $this->db->delete($table_name);
+                        $this->db->update($table_name, $data);
 
-                        $this->db->insert($r, $data);
-                        return true;
+                        if($this->db->affected_rows() == 0 ){
 
+                            //echo "No rows are affected " . $id;
+                            return false;
+                        }else {
+
+                            //echo "affected rows: " . "  id:" . $id ;
+                            return true;
+                        }
+
+                    }
+
+                }
+            }
+        }else{
+
+            if(strpos($table_name, $data['authorization']) !== false){
+
+                $this->db->where('id', $id);
+                $this->db->update($table_name, $data);
+                return true;
+
+            }else{
+
+                foreach ($query->result_array() as $table){
+                    foreach ($table as $r){
+
+                        if(strpos($r, $data['authorization']) !== false){
+
+                            $this->db->where('id', $id);
+                            $this->db->delete($table_name);
+
+                            $this->db->insert($r, $data);
+                            return true;
+
+                        }
                     }
                 }
             }
+
         }
+
     }
 
     public function delete_row($table_name,$id){
@@ -110,10 +139,7 @@ class Database_Model extends CI_Model{
 
 
 
-
-
-
-    public function select_all_array($table_name, $offset='0', $table_row='3'){
+    public function select_all_array($table_name, $offset='0', $table_row='100'){
 
 
 
@@ -143,27 +169,31 @@ class Database_Model extends CI_Model{
 
     }
 
+    public function is_picture_usedBy_another($picture_name){
+        $query = $this->db->query('show tables');
+        $query_result = array();
+        foreach ($query->result_array() as $tables){
+
+            foreach ($tables as $table){
+                $this->db->select('picture');
+                $this->db->from($table);
+                $this->db->where('picture', $picture_name);
+                $var = $this->db->get()->result_array();
+                if(!empty($var)){
+                    array_push($query_result, $var);
+                    return true;
+                }
+
+            }
+        }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
 
 
 }
-
-
 
 
 ?>

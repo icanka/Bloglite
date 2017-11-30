@@ -1,13 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Uyeler extends CI_Controller {
+
+class Posts extends CI_Controller {
+
 
     public function __construct()
     {
         parent::__construct();
         // Your own constructor code
-
+        $this->load->helper('url');
 
         if (!$this->session->userdata("admin_session")){
 
@@ -17,19 +19,80 @@ class Uyeler extends CI_Controller {
         }
     }
 
-
     public function index()
     {
 
+        $wrapper = array();
+        // pass this array the column names which are not going to be included in tables.
+        $columns = array(
 
-        $data['users'] = $this->Database_Model->select_all('users');
-        $data['admins'] = $this->Database_Model->select_all('admin');
+            'id'
+        );
+
+        // Which tables are going to get listed.
+        $tables =  array(
+            0 => 'posts'
+        );
+
+        $data = array();
+        $offset = '0';
+        $arrayd = array();
+
+
+
+        foreach ($tables as $table => $table_name){
+            if($this->session->flashdata($table_name)){
+                $arrayd[$table_name] = $this->session->flashdata($table_name);
+            }else{
+                $this->session->set_flashdata($table_name, '0');
+                $arrayd[$table_name] = $this->session->flashdata($table_name);
+            }
+        }
+
+
+
+        if($this->input->post('next') == 'next'){
+
+            foreach ($tables as $table => $table_name){
+                $offset = (int)$this->session->flashdata($table_name);
+                $offset += 3;
+                $offset = $this->Database_Model->get_offset($table_name, (string)$offset, 3);
+                $this->session->set_flashdata($table_name, $offset);
+                $arrayd[$table_name] = $this->session->flashdata($table_name);
+            }
+
+        }elseif ($this->input->post('prev') == 'prev'){
+
+            foreach ($tables as $table => $table_name){
+                $offset = (int)$this->session->flashdata($table_name);
+                $offset -= 3;
+                $offset = $this->Database_Model->get_offset($table_name, (string)$offset, 3);
+                $this->session->set_flashdata($table_name, $offset);
+                $arrayd[$table_name] = $this->session->flashdata($table_name);
+            }
+
+        }
+
+
+
+
+        foreach ($tables as $table){
+            if ($this->Database_Model->select_all_array($table, $arrayd[$table], '3') != false) {
+                $data[$table] = $this->Database_Model->select_all_array($table, $arrayd[$table]);
+
+            }
+
+        }
+
+        $wrapper['data'] = $data;
+        $wrapper['columns'] = $columns;
+        $wrapper['tables'] = $tables;
 
 
         $this->load->view('admin/_header_tablo');
         $this->load->view('admin/_sidebar');
         $this->load->view('admin/_top_nav');
-        $this->load->view('admin/_show_tables_test2', $data);
+        $this->load->view('admin/show_tables', $wrapper);
         $this->load->view('admin/_footer_tablo');
 
     }
@@ -121,26 +184,22 @@ class Uyeler extends CI_Controller {
 
     }
 
+    function get_string_between($string, $start, $end){
+        $string = ' ' . $string;
+        $ini = strpos($string, $start);
+        if ($ini == 0) return '';
+        $ini += strlen($start);
+        $len = strpos($string, $end, $ini) - $ini;
+        return substr($string, $ini, $len);
+    }
+
 
     public  function page_500(){
         $this->load->view('errors/page_500');
     }
 
-    /*
-    public function  ajax_search(){
 
-        $data = array(
 
-            'table_name' => $this->input->post('tablename'),
-            'keyword'    => $this->input->post('search_string')
-        );
-
-        $this->load->model('Database_Model');
-        $Result = $this->Database_Model->search();
-        echo json_encode($Result);
-
-    }
- */
 
 
 }

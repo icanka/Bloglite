@@ -26,14 +26,13 @@ class Uyeler extends CI_Controller {
         // pass this array the column names which are not going to be included in tables.
         $columns = array(
 
-            'picture'
+
         );
 
         // Which tables are going to get listed.
         $tables =  array(
             0 => 'users',
-            1 => 'admin',
-
+            1 => 'admin'
         );
 
         $data = array();
@@ -55,10 +54,12 @@ class Uyeler extends CI_Controller {
 
         if($this->input->post('next') == 'next'){
 
+            // use the same $table_row value in get_offset as used
+            // in select_all_array ( default = 100 )
             foreach ($tables as $table => $table_name){
                 $offset = (int)$this->session->flashdata($table_name);
-                $offset += 3;
-                $offset = $this->Database_Model->get_offset($table_name, (string)$offset, 3);
+                $offset += 100;
+                $offset = $this->Database_Model->get_offset($table_name, (string)$offset, 100);
                 $this->session->set_flashdata($table_name, $offset);
                 $arrayd[$table_name] = $this->session->flashdata($table_name);
             }
@@ -67,8 +68,8 @@ class Uyeler extends CI_Controller {
 
             foreach ($tables as $table => $table_name){
                 $offset = (int)$this->session->flashdata($table_name);
-                $offset -= 3;
-                $offset = $this->Database_Model->get_offset($table_name, (string)$offset, 3);
+                $offset -= 100;
+                $offset = $this->Database_Model->get_offset($table_name, (string)$offset, 100);
                 $this->session->set_flashdata($table_name, $offset);
                 $arrayd[$table_name] = $this->session->flashdata($table_name);
             }
@@ -79,7 +80,7 @@ class Uyeler extends CI_Controller {
 
 
         foreach ($tables as $table){
-            if ($this->Database_Model->select_all_array($table, $arrayd[$table], '3') != false) {
+            if ($this->Database_Model->select_all_array($table, $arrayd[$table]) != false) {
                 $data[$table] = $this->Database_Model->select_all_array($table, $arrayd[$table]);
 
             }
@@ -88,6 +89,7 @@ class Uyeler extends CI_Controller {
 
         $wrapper['data'] = $data;
         $wrapper['columns'] = $columns;
+        $wrapper['tables'] = $tables;
 
 
         $this->load->view('admin/_header_tablo');

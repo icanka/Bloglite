@@ -9,7 +9,15 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Kullanıcılar</h2>
+                        <h2>Show <?php foreach ($tables as $table){
+                            if($table == end($tables)){
+                                echo ucfirst($table);
+                            }else{
+                                echo ucfirst($table) . ', ';
+                            }
+                            }
+
+                        ?></h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li style="margin-right: 5px">
                                 <form method="post" action="<?=base_url('admin/uyeler')?>">
@@ -158,8 +166,41 @@
                                                     }else{
                                                         ?>
 
-                                                        <td><?=$row_value[$key]?></td>
 
+
+                                                        <?php
+                                                        if ($key == 'picture'){
+
+                                                            if (!empty($row_value[$key])) {
+                                                                ?>
+                                                                <td>
+                                                                    <div class="img__wrap"><span class="img_description"><a href="<?=base_url()?>admin/upload/upload_form/<?=$table_name?>/<?=$row_value['id']?>" class="btn btn-default btn-xs" style="margin-bottom: 0px; margin-right: 0px"><i class="fa fa-pencil"></i> <?= $row_value[$key] ?> </a></span>
+                                                                                <a
+                                                                                href="<?=base_url()?>admin/upload/upload_form/<?=$table_name?>/<?=$row_value['id']?>"
+                                                                                ><img
+                                                                                class="img_wrap"
+                                                                                src="<?= base_url('images/') ?><?= $row_value[$key] ?>"></a>
+                                                                    </div>
+                                                                </td>
+                                                                <?php
+                                                            }else {
+                                                                ?>
+                                                                <td><a title="Add Picture" href="<?=base_url()?>admin/upload/upload_form/<?=$table_name?>/<?=$row_value['id']?>" class="btn btn-default btn-xs" style="margin-bottom: 0px; margin-right: 0px; width: 100%"><i class="fa fa-plus"></i> Add Picture</a></td>
+                                                                <?php
+                                                            }
+                                                                ?>
+
+
+
+                                                        <?php
+                                                        }else {
+                                                            ?>
+
+                                                            <td><?= $row_value[$key] ?></td>
+
+                                                            <?php
+                                                        }
+                                                            ?>
                                                         <?php
                                                     }
 
@@ -168,7 +209,7 @@
 
                                                 ?>
                                                 <td style="text-align: center; width: 4%"><a href="<?=base_url()?>admin/uyeler/set_update/<?=$table_name?>/<?=$row_value['id']?>" class="btn btn-info btn-xs" style="margin-bottom: 0px; margin-right: 0px"><i class="fa fa-pencil"></i> Edit </a></td>
-                                                <td style="text-align: center; width: 4%"><a href="<?=base_url()?>admin/uyeler/set_update/<?=$table_name?>/<?=$row_value['id']?>" class="btn btn-danger btn-xs" style="margin-bottom: 0px; margin-right: 0px"><i class="fa fa-trash-o"></i> Delete </a></td>
+                                                <td style="text-align: center; width: 4%"><a href="<?=base_url()?>admin/uyeler/delete/<?=$table_name?>/<?=$row_value['id']?>" class="btn btn-danger btn-xs" style="margin-bottom: 0px; margin-right: 0px" onclick="return confirm('Please Confirm')"><i class="fa fa-trash-o"></i> Delete </a></td>
                                                 </tr>
                                                 <?php
 

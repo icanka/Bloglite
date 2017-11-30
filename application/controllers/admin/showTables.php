@@ -7,7 +7,7 @@ class showTables extends CI_Controller {
     {
         parent::__construct();
         // Your own constructor code
-        $this->load->helper('url');
+
 
         if (!$this->session->userdata("admin_session")){
 
