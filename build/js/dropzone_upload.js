@@ -52,7 +52,7 @@ var myDropzone = new Dropzone('#my_dropzone', {
                 if(result)  {
                     //console.log('inside if statement');
                     $(function(){
-                        new notification_Pnotify('Succesfully deleted.');
+                        new notification_Pnotify(result);
                     });
                 }
             }

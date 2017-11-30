@@ -125,20 +125,26 @@ class Upload extends CI_Controller {
             'picture' => ''
         );
 
-        echo "--------->" . $file . "<----------- ";
+
         $this->Database_Model->updateTo_table($table_name, $id, $data);
 
         if($file && file_exists($this->upload_path . "/" . $file)){
             if($this->Database_Model->is_picture_usedBy_another($file) == true){
                 //echo "this picture is use by another row dont delete it.";
             }else {
-                unlink($this->upload_path . "/" . $file);
+
+                if(unlink($this->upload_path . "/" . $file) == true ){
+                    echo 'succcesfully deleted from database.';
+                }else{
+
+                }
+
             }
         }
 
 
 
-        echo $file;
+
 
     }
 
