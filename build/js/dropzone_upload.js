@@ -26,6 +26,7 @@ var myDropzone = new Dropzone('#my_dropzone', {
         if(name)  {
             if (response == 'false'){
                 //console.log('could not find item :' + response)
+                // This part is now unnecessery but leaving it for future lookup.
                 $(function () {
                     new notification_Pnotify_error(' Could not find item.');
                 });

@@ -42,7 +42,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <p></p>
+                        <p>File formats accepted <strong>gif,jpg,png.</strong> Max files size: <strong>5MB</strong></p>
                         <form method="post" action="<?=base_url('admin/upload/upload_image')?>/<?=$table_name?>/<?=$id?>" class="dropzone dz-clickable" id="my_dropzone"><div class="dz-default dz-message"><span>Drop files here to upload</span></div></form>
                         <br>
                         <br>
