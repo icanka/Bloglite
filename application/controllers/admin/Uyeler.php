@@ -135,6 +135,23 @@ class Uyeler extends CI_Controller {
     }
 
 
+    public function gonderiler(){
+        $columns = array(
+
+
+        );
+
+        // Which tables are going to get listed.
+        $tables =  array(
+            0 => 'posts'
+        );
+
+        $this->showList($tables, $columns);
+
+    }
+
+
+
 
     public function showList($tables, $columns){
 
@@ -176,8 +193,10 @@ class Uyeler extends CI_Controller {
             // in select_all_array ( default = 100 )
             foreach ($tables as $table => $table_name){
                 $offset = (int)$this->session->flashdata($table_name);
-                $offset += 100;
-                $offset = $this->Database_Model->get_offset($table_name, (string)$offset, 100);
+                $offset += 3;
+
+                $offset = $this->Database_Model->get_offset($table_name, (string)$offset, 3);
+
                 $this->session->set_flashdata($table_name, $offset);
                 $arrayd[$table_name] = $this->session->flashdata($table_name);
             }
@@ -186,8 +205,8 @@ class Uyeler extends CI_Controller {
 
             foreach ($tables as $table => $table_name){
                 $offset = (int)$this->session->flashdata($table_name);
-                $offset -= 100;
-                $offset = $this->Database_Model->get_offset($table_name, (string)$offset, 100);
+                $offset -= 3;
+                $offset = $this->Database_Model->get_offset($table_name, (string)$offset, 3);
                 $this->session->set_flashdata($table_name, $offset);
                 $arrayd[$table_name] = $this->session->flashdata($table_name);
             }
@@ -216,7 +235,7 @@ class Uyeler extends CI_Controller {
         $this->load->view('admin/show_tables', $wrapper);
         $this->load->view('admin/_footer_tablo');
 
-        
+
     }
 
 

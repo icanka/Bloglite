@@ -139,7 +139,7 @@ class Database_Model extends CI_Model{
 
 
 
-    public function select_all_array($table_name, $offset='0', $table_row='100'){
+    public function select_all_array($table_name, $offset='0', $table_row='3'){
 
 
 
@@ -159,7 +159,12 @@ class Database_Model extends CI_Model{
         $offset = (int)$offset;
         if($offset+$table_row > ($num_rows-1)){
             $offset = $num_rows - $table_row;
-            return (string)$offset;
+            if($offset < 0){
+                $offset = 0;
+                return $offset;
+            }else {
+                return (string)$offset;
+            }
         }elseif ($offset < 0){
             $offset = 0;
             return (string)$offset;

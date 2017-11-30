@@ -30,10 +30,10 @@
                     <div class="menu_section">
                         <h3>General</h3>
                         <ul class="nav side-menu">
-                            <li><a href="<?php echo base_url('admin/home');?>"><i class="fa fa-home"></i> Anasayfa</a></li>
-                            <li><a href="<?php echo base_url('admin/uyeler');?>"><i class="fa fa-users"></i> Üyeler </a></li>
-                            <li><a href="<?php echo base_url('admin/gonderiler');?>"><i class="fa fa-book"></i> Blog gönderileri</a></li>
-                            <li><a href="<?php echo base_url('admin/yorumlar');?>"><i class="fa fa-comments"></i> Yorumlar</a></li>
+                            <li><a href="<?php echo base_url('admin/home');?>"><i class="fa fa-home"></i> Homepage </a></li>
+                            <li><a href="<?php echo base_url('admin/uyeler');?>"><i class="fa fa-users"></i> Users </a></li>
+                            <li><a href="<?php echo base_url('admin/uyeler/gonderiler');?>"><i class="fa fa-book"></i> Blog posts</a></li>
+                            <li><a href="<?php echo base_url('admin/uyeler/comments');?>"><i class="fa fa-comments"></i> Comments </a></li>
 
                             <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
