@@ -21,11 +21,18 @@
 <!-- NProgress -->
 <script src="<?php echo base_url('vendors/nprogress/nprogress.js'); ?>"></script>
 
+<script src="<?php echo base_url('vendors/pnotify/dist/pnotify.js'); ?>"></script>
+<script src="<?php echo base_url('vendors/pnotify/dist/pnotify.buttons.js'); ?>"></script>
+<script src="<?php echo base_url('vendors/pnotify/dist/pnotify.nonblock.js'); ?>"></script>
 
 <!-- Custom Theme Scripts -->
-<script src="<?php echo base_url('build/js/custom.min.js'); ?>"></script>
+<script src="<?php echo base_url('build/js/custom.js'); ?>"></script>
 
 <script src="<?php echo base_url('src/js/fullscreen.js'); ?>"></script>
+
+<?php if ($this->session->flashdata('succes_message')){ ?>
+    <script>notification_Pnotify('<?=$this->session->flashdata('succes_message')?>');</script>
+<?php } ?>
 
 
 </body>

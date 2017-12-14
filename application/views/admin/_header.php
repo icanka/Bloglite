@@ -16,6 +16,11 @@
     <!-- NProgress -->
     <link href="<?php echo base_url('vendors/nprogress/nprogress.css'); ?>" rel="stylesheet">
 
+    <!-- Pnotify -->
+    <link href="<?php echo base_url('vendors/pnotify/dist/pnotify.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url('vendors/pnotify/dist/pnotify.buttons.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url('vendors/pnotify/dist/pnotify.nonblock.css'); ?>" rel="stylesheet">
+
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url('build/css/custom.min.css'); ?>" rel="stylesheet">
 </head>

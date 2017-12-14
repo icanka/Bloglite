@@ -1,3 +1,7 @@
+<?php
+
+
+?>
 
 <div class="right_col" role="main">
     <div class="">
@@ -9,7 +13,11 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Show <?php foreach ($tables as $table){
+                        <h2>Show
+                            <?php
+
+                            foreach ($tables as $table){
+
                             if($table == end($tables)){
                                 echo ucfirst($table);
                             }else{
@@ -17,10 +25,11 @@
                             }
                             }
 
-                        ?></h2>
+                        ?>
+                        </h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li style="margin-right: 5px">
-                                <form method="post" action="<?=base_url('admin/uyeler')?>">
+                                <form method="post" action="<?=base_url('admin/')?><?=$segment_name?>">
                                     <div class="btn-group">
 
                                         <button value="prev" name="prev" class="btn btn-default" type="submit">Prev</button>
@@ -32,7 +41,9 @@
                             <li style="margin-right: 25px">
 
                                 <div class="btn-group">
-                                    <a href="<?=base_url('admin/uyeler/insert')?>" class="btn btn-dark" type="button"><i class="fa fa-plus"></i> Ekle</a>
+
+                                    <a href="<?=base_url()?>admin/<?=$segment_name?>/set_insert" class="btn btn-dark" type="button"><i class="fa fa-plus"></i> Ekle</a>
+                                    
                                 </div>
                             </li>
 
@@ -55,6 +66,8 @@
 
                     <div class="x_content">
 
+
+                        <?php if(!empty($data)){ ?>
                         <div class="" role="tabpanel" data-example-id="togglable-tabs">
 
 
@@ -143,8 +156,14 @@
 
                                                 }
                                                 ?>
+
+                                                            <?php if($segment_name == 'gonderiler'){?>
+                                                            <th>Galery</th>
+                                                            <?php } ?>
                                                             <th>Edit</th>
                                                             <th>Delete</th>
+
+
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -193,10 +212,12 @@
 
 
                                                         <?php
-                                                        }else {
+                                                        }
+                                                        else {
                                                             ?>
 
                                                             <td><?= $row_value[$key] ?></td>
+
 
                                                             <?php
                                                         }
@@ -208,8 +229,14 @@
                                                 }
 
                                                 ?>
-                                                <td style="text-align: center; width: 4%"><a href="<?=base_url()?>admin/uyeler/set_update/<?=$table_name?>/<?=$row_value['id']?>" class="btn btn-info btn-xs" style="margin-bottom: 0px; margin-right: 0px"><i class="fa fa-pencil"></i> Edit </a></td>
-                                                <td style="text-align: center; width: 4%"><a href="<?=base_url()?>admin/uyeler/delete/<?=$table_name?>/<?=$row_value['id']?>" class="btn btn-danger btn-xs" style="margin-bottom: 0px; margin-right: 0px" onclick="return confirm('Please Confirm')"><i class="fa fa-trash-o"></i> Delete </a></td>
+                                                    <?php if($segment_name == 'gonderiler'){?>
+                                                    <td style="text-align: center; width: 4%"><a href="<?=base_url()?>admin/gallery/show_gallery/<?=$table_name?>/<?=$row_value['id']?>" class="btn btn-dark btn-xs" style="margin-bottom: 0px; margin-right: 0px"><i class="fa fa-folder"></i> Gallery</a></td>
+
+                                                    <?php }?>
+
+
+                                                    <td style="text-align: center; width: 4%"><a href="<?=base_url()?>admin/<?=$segment_name?>/set_update/<?=$table_name?>/<?=$row_value['id']?>" class="btn btn-info btn-xs" style="margin-bottom: 0px; margin-right: 0px"><i class="fa fa-pencil"></i> Edit </a></td>
+                                                    <td style="text-align: center; width: 4%"><a href="<?=base_url()?>admin/<?=$segment_name?>/delete/<?=$table_name?>/<?=$row_value['id']?>" class="btn btn-danger btn-xs" style="margin-bottom: 0px; margin-right: 0px" onclick="return confirm('Please Confirm')"><i class="fa fa-trash-o"></i> Delete </a></td>
                                                 </tr>
                                                 <?php
 
@@ -232,7 +259,21 @@
                         </div>
 
                     </div>
+                        <?php }else { ?>
 
+
+                            <div class="bs-example" data-example-id="simple-jumbotron">
+                                <div class="jumbotron">
+                                    <h1>Tables empty.</h1>
+                                    <p></p>
+                                </div>
+                            </div>
+
+
+                        <?php } ?>
+
+
+                    </div><!-- not sonradan eklendi. -->
                 </div>
             </div>
         </div>

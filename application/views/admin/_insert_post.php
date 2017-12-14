@@ -36,53 +36,113 @@
 
                     <div class="x_content">
                         <br />
-                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="<?=base_url('admin/uyeler/insertTo_table')?>">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="<?=base_url('admin/gonderiler/insert_post/')?>">
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Post Title <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="first-name" name="post_title" value="" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+
 
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Name <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="first-name" name="name" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" id="first-name" name="user" value="" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">E-mail <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Password </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="middle-name" class="form-control col-md-7 col-xs-12" required="required" type="text" name="password">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Nickname <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="birthday" name="nickname" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Authorization</label>
-                                <div class="col-md-6 col-sm-9 col-xs-12">
-                                    <select class="form-control" name="authorization">
-                                        <option>user</option>
-                                        <option>admin</option>
-                                    </select>
-                                </div>
-                            </div>
+
+
+
+
+
+
+
+
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">State</label>
                                 <div class="col-md-6 col-sm-9 col-xs-12">
-                                    <select class="form-control" name="state">
+                                    <select class="form-control" name="state" required="required">
+                                        <option selected="selected"></option>
                                         <option>active</option>
                                         <option>inactive</option>
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Category</label>
+                                <div class="col-md-6 col-sm-9 col-xs-12">
+                                    <select class="form-control" name="category" required="required">
+                                        <option selected="selected" value=""></option>
+
+                                        <?php foreach ($categories as $category){ ?>
+
+                                            <option value="<?=$category->id?>"><?=$category->category_name?></option>
+
+
+                                        <?php } ?>
+
+
+
+
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Keywords </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="tags_1" name="keywords" type="text" class="tags form-control" required="required" value="
+
+                                    " />
+                                    <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Contents </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <textarea id="editor1" name="contents"></textarea>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -93,6 +153,32 @@
                             </div>
 
                         </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>
                 </div>
             </div>

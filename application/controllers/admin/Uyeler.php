@@ -22,10 +22,18 @@ class Uyeler extends CI_Controller {
     public function index()
     {
 
-        // pass this array the column names which are not going to be included in tables.
+
+
+       $this->uyeler();
+
+    }
+
+
+    public function uyeler(){
+
         $columns = array(
 
-            //'id'
+
 
         );
 
@@ -34,11 +42,14 @@ class Uyeler extends CI_Controller {
             0 => 'users',
             1 => 'admin'
         );
-       $this->showList($tables, $columns);
+
+        $segment_name = $this->uri->segment(2);
+
+        $this->showList($tables, $columns, $segment_name);
 
     }
 
-    public function insert() {
+    public function set_insert() {
 
         $this->load->view('admin/_header_form');
         $this->load->view('admin/_sidebar');
@@ -48,7 +59,7 @@ class Uyeler extends CI_Controller {
 
     }
 
-    public function insertTo_table() {
+    public function insert_user() {
 
         $data = array(
             'name'    => $this->input->post('name'),
@@ -62,9 +73,9 @@ class Uyeler extends CI_Controller {
 
 
         if ($data['authorization'] == 'admin'){
-            $this->Database_Model->insertTo_table('admin', $data);
+            $this->users_model->insertTo_table('admin', $data);
         }else {
-            $this->Database_Model->insertTo_table('users', $data);
+            $this->users_model->insertTo_table('users', $data);
         }
         $this->session->set_flashdata('succes_message', 'Succesfully submitted.');
         redirect(base_url('admin/uyeler'));
@@ -74,7 +85,7 @@ class Uyeler extends CI_Controller {
 
     public function set_update($table_name, $id){
 
-        $data['row'] = $this->Database_Model->get_row($table_name, $id);
+        $data['row'] = $this->users_model->get_row($table_name, $id);
         $data['table_name'] = $table_name;
 
             $this->load->view('admin/_header_form');
@@ -86,6 +97,9 @@ class Uyeler extends CI_Controller {
 
 
     }
+
+
+
 
     public function update_table($table_name, $id){
 
@@ -100,11 +114,12 @@ class Uyeler extends CI_Controller {
             'date' => $this->input->post('date')
         );
 
-        if($this->Database_Model->updateTo_table($table_name, $id, $data) == true){
-            $this->session->set_flashdata('succes_message', 'Succesfully updated.');
+        if($this->users_model->updateTo_table($table_name, $id, $data) === true){
+            $this->session->set_flashdata('succes_message', 'Succesfullyyy updated.');
             redirect(base_url('admin/uyeler'));
         }else{
-            redirect(base_url('admin/uyeler/page_500'));
+            $this->session->set_flashdata('warning_message', 'No rows affected.');
+            redirect(base_url('admin/uyeler'));
         }
 
 
@@ -114,13 +129,13 @@ class Uyeler extends CI_Controller {
 
 
     public function delete($table_name ,$id){
-        if($this->Database_Model->delete_row($table_name, $id) == true){
+        if($this->users_model->delete_row($table_name, $id) == true){
 
             $this->session->set_flashdata('succes_message', 'Succesfully deleted.');
             redirect(base_url('admin/uyeler'));
 
         }else{
-            redirect(base_url('admin/uyeler/page_500'));
+            redirect(base_url('admin/error_con/page_500'));
         }
 
     }
@@ -135,25 +150,9 @@ class Uyeler extends CI_Controller {
     }
 
 
-    public function gonderiler(){
-        $columns = array(
 
 
-        );
-
-        // Which tables are going to get listed.
-        $tables =  array(
-            0 => 'posts'
-        );
-
-        $this->showList($tables, $columns);
-
-    }
-
-
-
-
-    public function showList($tables, $columns){
+    public function showList($tables, $columns, $uri_segment){
 
 
 
@@ -193,9 +192,9 @@ class Uyeler extends CI_Controller {
             // in select_all_array ( default = 100 )
             foreach ($tables as $table => $table_name){
                 $offset = (int)$this->session->flashdata($table_name);
-                $offset += 3;
+                $offset += 10;
 
-                $offset = $this->Database_Model->get_offset($table_name, (string)$offset, 3);
+                $offset = $this->users_model->get_offset($table_name, (string)$offset, 10);
 
                 $this->session->set_flashdata($table_name, $offset);
                 $arrayd[$table_name] = $this->session->flashdata($table_name);
@@ -205,8 +204,8 @@ class Uyeler extends CI_Controller {
 
             foreach ($tables as $table => $table_name){
                 $offset = (int)$this->session->flashdata($table_name);
-                $offset -= 3;
-                $offset = $this->Database_Model->get_offset($table_name, (string)$offset, 3);
+                $offset -= 10;
+                $offset = $this->users_model->get_offset($table_name, (string)$offset, 10);
                 $this->session->set_flashdata($table_name, $offset);
                 $arrayd[$table_name] = $this->session->flashdata($table_name);
             }
@@ -217,8 +216,8 @@ class Uyeler extends CI_Controller {
 
 
         foreach ($tables as $table){
-            if ($this->Database_Model->select_all_array($table, $arrayd[$table]) != false) {
-                $data[$table] = $this->Database_Model->select_all_array($table, $arrayd[$table]);
+            if ($this->users_model->select_all_array($table, $arrayd[$table]) != false) {
+                $data[$table] = $this->users_model->select_all_array($table, $arrayd[$table]);
 
             }
 
@@ -227,6 +226,7 @@ class Uyeler extends CI_Controller {
         $wrapper['data'] = $data;
         $wrapper['columns'] = $columns;
         $wrapper['tables'] = $tables;
+        $wrapper['segment_name'] = $uri_segment;
 
 
         $this->load->view('admin/_header_tablo');
@@ -237,21 +237,6 @@ class Uyeler extends CI_Controller {
 
 
     }
-
-
-
-
-
-    public  function page_500(){
-        $this->load->view('errors/page_500');
-    }
-
-
-
-
-
-
-
 
 
 }

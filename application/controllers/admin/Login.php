@@ -23,9 +23,8 @@ class Login extends CI_Controller {
         $this->security->xss_clean($email);
         $this->security->xss_clean($password);
 
-        $this->load->model('Database_Model');
 
-        $result = $this->Database_Model->login('admin', $email, $password);
+        $result = $this->admin_model->login('admin', $email, $password);
 
         if ($result){
 

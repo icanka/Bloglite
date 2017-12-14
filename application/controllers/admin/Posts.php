@@ -163,7 +163,7 @@ class Posts extends CI_Controller {
             $this->session->set_flashdata('succes_message', 'Succesfully updated.');
             redirect(base_url('admin/uyeler'));
         }else{
-            redirect(base_url('admin/uyeler/page_500'));
+            redirect(base_url('admin/error_con/page_500'));
         }
 
 
@@ -179,7 +179,7 @@ class Posts extends CI_Controller {
             redirect(base_url('admin/uyeler'));
 
         }else{
-            redirect(base_url('admin/uyeler/page_500'));
+            redirect(base_url('admin/error_con/page_500'));
         }
 
     }
@@ -192,14 +192,6 @@ class Posts extends CI_Controller {
         $len = strpos($string, $end, $ini) - $ini;
         return substr($string, $ini, $len);
     }
-
-
-    public  function page_500(){
-        $this->load->view('errors/page_500');
-    }
-
-
-
 
 
 }

@@ -1026,6 +1026,8 @@ if (typeof NProgress != 'undefined') {
 				}
 				
 		    };
+
+
 	   
 		/* SELECT2 */
 	  
@@ -1869,7 +1871,7 @@ if (typeof NProgress != 'undefined') {
 		
 		function notification_Pnotify(notification_text){
 			new PNotify({
-                title: 'Success',
+                title: 'SUCCESS',
                 text: notification_text,
                 type: 'success',
                 styling: 'bootstrap3',
@@ -1880,9 +1882,31 @@ if (typeof NProgress != 'undefined') {
 
 		function notification_Pnotify_error(notification_text){
 			new PNotify({
-				title: 'Error',
+				title: 'ERROR',
 				text: notification_text,
 				type: 'error',
+				styling: 'bootstrap3',
+
+			});
+
+		};
+
+		function notification_Pnotify_info(notification_text){
+			new PNotify({
+				title: 'INFO',
+				text: notification_text,
+				type: 'info',
+				styling: 'bootstrap3',
+
+			});
+
+		};
+
+		function notification_Pnotify_warning(notification_text){
+			new PNotify({
+				title: 'WARNING',
+				text: notification_text,
+				type: 'warning',
 				styling: 'bootstrap3',
 
 			});

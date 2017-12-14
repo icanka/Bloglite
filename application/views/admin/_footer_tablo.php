@@ -40,6 +40,12 @@
 
 <?php if ($this->session->flashdata('succes_message')){ ?>
     <script>notification_Pnotify('<?=$this->session->flashdata('succes_message')?>');</script>
+<?php } elseif ($this->session->flashdata('error_message')){ ?>
+<script>notification_Pnotify_error('<?=$this->session->flashdata('error_message')?>');</script>
+<?php } elseif ($this->session->flashdata('info_message')){ ?>
+<script>notification_Pnotify_info('<?=$this->session->flashdata('info_message')?>');</script>
+<?php } elseif ($this->session->flashdata('warning_message')){ ?>
+<script>notification_Pnotify_warning('<?=$this->session->flashdata('warning_message')?>');</script>
 <?php } ?>
 
 

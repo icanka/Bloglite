@@ -135,8 +135,8 @@ class Uyeler extends CI_Controller {
             'keyword'    => $this->input->post('search_string')
         );
 
-        $this->load->model('Database_Model');
-        $Result = $this->Database_Model->search();
+        $this->load->model('usersmodel');
+        $Result = $this->usersmodel->search();
         echo json_encode($Result);
 
     }
